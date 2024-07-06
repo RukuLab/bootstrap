@@ -21,6 +21,10 @@ def check_docker_running
   $?.success?
 end
 
+def check_ruku_installed?
+  system('which ruku > /dev/null 2>&1')
+end
+
 def get_release_file_name
   arch = `uname -m`.strip
 
@@ -94,4 +98,12 @@ else
   puts "Installing Docker..."
   install_docker
   puts "Docker installation complete!"
+end
+
+if check_ruku_installed?
+  puts "Ruku is already installed."
+else
+  puts "Installing Ruku..."
+  install_ruku
+  puts "Ruku installation complete!"
 end
