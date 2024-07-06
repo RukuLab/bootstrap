@@ -3,6 +3,7 @@
 require 'open-uri'
 require 'fileutils'
 
+# Docker installation and checking functions
 def install_docker
   system("curl -fsSL https://get.docker.com -o get-docker.sh")
   system("sudo sh ./get-docker.sh")
@@ -25,6 +26,7 @@ def check_ruku_installed?
   system('which ruku > /dev/null 2>&1')
 end
 
+# Ruku download and installation functions
 def get_release_file_name
   arch = `uname -m`.strip
 
@@ -86,6 +88,7 @@ def install_ruku
   puts "Cleaned up downloaded files."
 end
 
+# Main execution
 if check_docker_installed
   puts "Docker is already installed."
   if check_docker_running
