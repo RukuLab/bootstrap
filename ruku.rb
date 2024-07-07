@@ -20,22 +20,6 @@ class Ruku
     end
   end
 
-  def self.download_release_file(file_name, url)
-    puts "Downloading #{file_name}..."
-    uri = URI(url)
-    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
-      request = Net::HTTP::Get.new(uri)
-      http.request(request) do |response|
-        File.open(file_name, 'wb') do |file|
-          response.read_body do |chunk|
-            file.write(chunk)
-          end
-        end
-      end
-    end
-    puts "Downloaded #{file_name}"
-  end
-
   def self.find_executable
     extracted_files = Dir.glob('*').select { |f| File.executable?(f) && File.file?(f) }
 
@@ -66,7 +50,8 @@ class Ruku
     file_name = release_file_name
     release_url = "https://github.com/RukuLab/ruku/releases/latest/download/#{file_name}"
 
-    download_release_file(file_name, release_url)
+    puts "Downloading #{file_name}..."
+    system("curl -O #{release_url}")
 
     puts "Unzipping #{file_name}..."
     system("tar -xzf #{file_name}")
