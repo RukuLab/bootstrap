@@ -1,0 +1,21 @@
+Layout/LineLength:
+  Description: "Avoid lines longer than 120 characters."
+  Enabled: true
+  Max: 120
+
+Metrics/ClassLength:
+  Description: "Avoid classes longer than 175 lines of code."
+  Enabled: true
+  CountComments: false # count full line comments?
+  Max: 200
+  CountAsOne: []
+
+Metrics/MethodLength:
+  Description: "Avoid methods longer than 30 lines of code."
+  StyleGuide: "#short-methods"
+  Enabled: true
+  CountComments: false # count full line comments?
+  Max: 50
+  CountAsOne: []
+  AllowedMethods: []
+  AllowedPatterns: []
