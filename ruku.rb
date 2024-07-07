@@ -22,7 +22,7 @@ class Ruku
 
   def self.move_binary_to_bin(binary_name)
     binary_path = File.join(Dir.pwd, binary_name)
-    bin_dir = File.expand_path("~/bin")
+    bin_dir = File.expand_path("/bin")
     bin_path = File.join(bin_dir, binary_name)
 
     if File.exist?(bin_path)
