@@ -1,0 +1,13 @@
+class Ruku
+  def self.download_release_file: -> void
+
+  def self.find_executable: -> string
+
+  def self.install: -> void
+
+  def self.installed?: -> bool
+
+  def self.move_binary_to_bin: -> void
+
+  def self.release_file_name: -> string
+end

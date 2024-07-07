@@ -1,0 +1,7 @@
+class Docker
+  def self.install: -> void
+
+  def self.installed?: -> bool
+
+  def self.running?: -> bool
+end
