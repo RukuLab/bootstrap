@@ -113,8 +113,9 @@ end
 
 if check_ruku_installed?
   puts 'Ruku is already installed.'
-else
-  puts 'Installing Ruku...'
-  install_ruku
-  puts 'Ruku installation complete!'
+  ruku_path = File.expand_path('~/bin/ruku')
+  File.delete(ruku_path)
 end
+puts 'Installing the latest Ruku...'
+install_ruku
+puts 'Ruku installation complete!'
