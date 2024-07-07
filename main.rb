@@ -24,8 +24,6 @@ def main
 
   if Ruku.installed?
     puts 'Ruku is already installed.'
-    ruku_path = File.expand_path('~/bin/ruku')
-    File.delete(ruku_path)
   end
   puts 'Installing the latest Ruku...'
   Ruku.install
