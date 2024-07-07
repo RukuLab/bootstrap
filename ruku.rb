@@ -20,30 +20,20 @@ class Ruku
     end
   end
 
-  def self.find_executable
-    extracted_files = Dir.glob('*').select { |f| File.executable?(f) && File.file?(f) }
-
-    if extracted_files.empty?
-      abort('No executable binary found in the extracted files.')
-    elsif extracted_files.size > 1
-      abort('Multiple executables found in the extracted files. Please check the archive.')
-    else
-      first = extracted_files.first
-      if first.nil?
-        abort('Unexpected error: first element is nil.')
-      else
-        first
-      end
-    end
-  end
-
   def self.move_binary_to_bin(binary_name)
-    destination_dir = File.expand_path('~/bin')
-    destination_path = File.join(destination_dir, binary_name)
+    binary_path = File.join(Dir.pwd, binary_name)
+    bin_dir = File.expand_path("~/bin")
+    bin_path = File.join(bin_dir, binary_name)
 
-    FileUtils.mv(binary_name, destination_path)
+    if File.exist?(bin_path)
+      puts "Replacing existing ruku binary..."
+      FileUtils.rm(bin_path)
+    end
 
-    puts "Binary moved to #{destination_path} and made executable."
+    puts "Moving ruku binary to #{bin_dir}..."
+    FileUtils.mv(binary_path, bin_dir)
+
+    puts "ruku binary installed successfully!"
   end
 
   def self.install
@@ -56,8 +46,7 @@ class Ruku
     puts "Unzipping #{file_name}..."
     system("tar -xzf #{file_name}")
 
-    binary_name = find_executable
-    move_binary_to_bin(binary_name)
+    move_binary_to_bin("ruku")
 
     File.delete(file_name)
     puts 'Cleaned up downloaded files.'
