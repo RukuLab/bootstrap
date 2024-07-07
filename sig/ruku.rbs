@@ -1,6 +1,4 @@
 class Ruku
-  def self.download_release_file: -> void
-
   def self.find_executable: -> string
 
   def self.install: -> void

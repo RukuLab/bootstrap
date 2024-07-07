@@ -2,7 +2,6 @@
 # frozen_string_literal: true
 
 require 'English'
-require 'net/http'
 require 'fileutils'
 
 require_relative 'ruku'
