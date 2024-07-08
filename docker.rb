@@ -8,6 +8,7 @@ class Docker
 
     puts 'Run a test container to verify Docker is working'
     system('docker run --rm hello-world')
+    system('rm ./get-docker.sh')
   end
 
   def self.installed?
