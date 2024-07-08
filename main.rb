@@ -26,7 +26,6 @@ def main
   puts 'Installing the latest Ruku...'
   Ruku.install
   puts 'Ruku installation complete!'
-
 end
 
 main
