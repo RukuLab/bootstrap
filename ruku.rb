@@ -22,18 +22,18 @@ class Ruku
 
   def self.move_binary_to_bin(binary_name)
     binary_path = File.join(Dir.pwd, binary_name)
-    bin_dir = File.expand_path("/bin")
+    bin_dir = File.expand_path('/bin')
     bin_path = File.join(bin_dir, binary_name)
 
     if File.exist?(bin_path)
-      puts "Replacing existing ruku binary..."
+      puts 'Replacing existing ruku binary...'
       FileUtils.rm(bin_path)
     end
 
     puts "Moving ruku binary to #{bin_dir}..."
     FileUtils.mv(binary_path, bin_dir)
 
-    puts "ruku binary installed successfully!"
+    puts 'ruku binary installed successfully!'
   end
 
   def self.install
@@ -46,7 +46,7 @@ class Ruku
     puts "Unzipping #{file_name}..."
     system("tar -xzf #{file_name}")
 
-    move_binary_to_bin("ruku")
+    move_binary_to_bin('ruku')
 
     File.delete(file_name)
     puts 'Cleaned up downloaded files.'

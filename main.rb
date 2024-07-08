@@ -22,9 +22,7 @@ def main
     puts 'Docker installation complete!'
   end
 
-  if Ruku.installed?
-    puts 'Ruku is already installed.'
-  end
+  puts 'Ruku is already installed.' if Ruku.installed?
   puts 'Installing the latest Ruku...'
   Ruku.install
   puts 'Ruku installation complete!'
