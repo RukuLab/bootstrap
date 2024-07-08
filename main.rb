@@ -2,6 +2,8 @@
 # frozen_string_literal: true
 
 require 'English'
+require 'open3'
+require 'tempfile'
 require 'fileutils'
 
 require_relative 'ruku'

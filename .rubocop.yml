@@ -19,3 +19,14 @@ Metrics/MethodLength:
   CountAsOne: []
   AllowedMethods: []
   AllowedPatterns: []
+
+Metrics/AbcSize:
+  Description: >-
+    A calculated magnitude based on number of assignments, branches, and conditions.
+  Enabled: true
+  # The ABC size is a calculated magnitude, so this number can be an Integer or
+  # a Float.
+  AllowedMethods: []
+  AllowedPatterns: []
+  CountRepeatedAttributes: true
+  Max: 50

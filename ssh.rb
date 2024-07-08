@@ -8,6 +8,29 @@ class SSH
     system("sudo adduser --disabled-password --gecos 'PaaS access' --ingroup www-data $PAAS_USERNAME")
   end
 
+  def setup(key_file)
+    if File.exist?(key_file)
+      begin
+        fingerprint, = Open3.capture2("ssh-keygen -lf #{key_file}")
+        fingerprint = fingerprint.split(' ')[1]
+        key = File.read(key_file).strip
+        puts "Adding key '#{fingerprint}'."
+        setup_authorized_keys(fingerprint, '/usr/bin/ruku', key)
+      rescue StandardError => e
+        puts "Error: invalid public key file '#{key_file}': #{e.message}"
+      end
+    elsif key_file == '-'
+      buffer = $stdin.read
+      Tempfile.create('pubkey') do |f|
+        f.write(buffer)
+        f.flush
+        setup(f.path)
+      end
+    else
+      puts "Error: public key file '#{key_file}' not found."
+    end
+  end
+
   def setup_authorized_keys(ssh_fingerprint, script_path, pub_key)
     authorized_keys = File.join(ENV['HOME'], '.ssh', 'authorized_keys')
     FileUtils.mkdir_p(File.dirname(authorized_keys)) unless File.exist?(File.dirname(authorized_keys))
