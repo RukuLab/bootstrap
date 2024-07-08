@@ -39,5 +39,5 @@ def setup_authorized_keys(ssh_fingerprint, script_path, pub_key)
 end
 
 puts 'Setup SSH...'
-setup(AUTHORIZED_KEY_PATH)
+setup(ARGV[0])
 puts 'SSH setup done.'
