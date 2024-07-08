@@ -1,27 +1,31 @@
 # frozen_string_literal: true
 
+require_relative 'constants'
+
 # SSH class
 class SSH
   def self.install
     user = 'ruku'
     system("PAAS_USERNAME=#{user}")
     system("sudo adduser --disabled-password --gecos 'PaaS access' --ingroup www-data $PAAS_USERNAME")
+
+    setup(AUTHORIZED_KEY_PATH)
   end
 
-  def setup(key_file)
+  def self.setup(key_file)
     if File.exist?(key_file)
       begin
         fingerprint, = Open3.capture2("ssh-keygen -lf #{key_file}")
         fingerprint = fingerprint.split(' ')[1]
         key = File.read(key_file).strip
         puts "Adding key '#{fingerprint}'."
-        setup_authorized_keys(fingerprint, '/usr/bin/ruku', key)
+        setup_authorized_keys(fingerprint, RUKU_PATH, key)
       rescue StandardError => e
         puts "Error: invalid public key file '#{key_file}': #{e.message}"
       end
     elsif key_file == '-'
       buffer = $stdin.read
-      Tempfile.create('pubkey') do |f|
+      Tempfile.create('pub_key') do |f|
         f.write(buffer)
         f.flush
         setup(f.path)

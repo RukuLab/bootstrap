@@ -1,7 +1,7 @@
 class SSH
   def self.install: -> void
 
-  def setup: -> void
+  def self.setup: -> void
 
   def setup_authorized_keys: -> void
 end
