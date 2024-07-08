@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+require 'open3'
+require 'tempfile'
+require 'fileutils'
+
 require_relative 'constants'
 
 def setup(key_file)
