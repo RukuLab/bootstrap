@@ -8,6 +8,7 @@ require 'fileutils'
 
 require_relative 'ruku'
 require_relative 'docker'
+require_relative 'ssh'
 
 def main
   if Docker.installed?
@@ -28,6 +29,10 @@ def main
   puts 'Installing the latest Ruku...'
   Ruku.install
   puts 'Ruku installation complete!'
+
+  puts 'Setup SSH...'
+  SSH.install
+
 end
 
 main

@@ -5,9 +5,9 @@ require_relative 'constants'
 # SSH class
 class SSH
   def self.install
-    user = 'ruku'
-    system("PAAS_USERNAME=#{user}")
+    system("PAAS_USERNAME=#{USER_NAME}")
     system("sudo adduser --disabled-password --gecos 'PaaS access' --ingroup www-data $PAAS_USERNAME")
+    system('sudo su - $PAAS_USERNAME')
 
     setup(AUTHORIZED_KEY_PATH)
   end

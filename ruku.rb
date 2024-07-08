@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'constants'
+
 # Ruku class
 class Ruku
   def self.installed?
@@ -46,7 +48,7 @@ class Ruku
     puts "Unzipping #{file_name}..."
     system("tar -xzf #{file_name}")
 
-    move_binary_to_bin('ruku')
+    move_binary_to_bin(BINARY_NAME)
 
     File.delete(file_name)
     puts 'Cleaned up downloaded files.'

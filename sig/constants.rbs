@@ -1,2 +1,4 @@
+USER_NAME: string
+BINARY_NAME: string
 RUKU_PATH: string
 AUTHORIZED_KEY_PATH: string
