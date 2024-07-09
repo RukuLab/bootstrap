@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is run inside the `ruku` userspace.
+
 require 'open3'
 require 'tempfile'
 require 'fileutils'
