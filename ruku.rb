@@ -43,7 +43,7 @@ class Ruku
     release_url = "https://github.com/RukuLab/ruku/releases/latest/download/#{file_name}"
 
     puts "Downloading #{file_name}..."
-    system("wget #{release_url}")
+    system("wget -q --show-progress #{release_url}")
 
     puts "Unzipping #{file_name}..."
     system("tar -xzf #{file_name}")
