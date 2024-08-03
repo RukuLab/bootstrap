@@ -31,13 +31,13 @@ def setup(key_file)
   end
 end
 
-def setup_authorized_keys(ssh_fingerprint, script_path, pub_key)
+def setup_authorized_keys(ssh_fingerprint, binary_path, pub_key)
   authorized_keys = File.join(Dir.home, '.ssh', 'authorized_keys')
   FileUtils.mkdir_p(File.dirname(authorized_keys)) unless File.exist?(File.dirname(authorized_keys))
 
-  # Restrict features and force all SSH commands to go through our script
+  # Restrict features and force all SSH commands to go through our binary
   File.open(authorized_keys, 'a') do |f|
-    f.write("command=\"FINGERPRINT=#{ssh_fingerprint} NAME=default #{script_path} $SSH_ORIGINAL_COMMAND\",no-agent-forwarding,no-user-rc,no-X11-forwarding,no-port-forwarding #{pub_key}\n")
+    f.write("command=\"FINGERPRINT=#{ssh_fingerprint} NAME=default #{binary_path} $SSH_ORIGINAL_COMMAND\",no-agent-forwarding,no-user-rc,no-X11-forwarding,no-port-forwarding #{pub_key}\n")
   end
 
   FileUtils.chmod(0o700, File.dirname(authorized_keys))
