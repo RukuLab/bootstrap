@@ -4,7 +4,6 @@
 require 'English'
 require 'fileutils'
 
-require_relative 'ruku'
 require_relative 'docker'
 
 def main

@@ -4,6 +4,8 @@
 
 require 'fileutils'
 
+require_relative 'ruku'
+
 def setup_directories
   home = Dir.home
   ruku_root = File.join(home, '.ruku')
