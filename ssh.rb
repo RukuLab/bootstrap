@@ -15,7 +15,7 @@ def setup(key_file)
       fingerprint = fingerprint.split(' ')[1]
       key = File.read(key_file).strip
       puts "Adding key '#{fingerprint}'."
-      setup_authorized_keys(fingerprint, RUKU_PATH, key)
+      setup_authorized_keys(fingerprint, ruku_path, key)
     rescue StandardError => e
       puts "Error: invalid public key file '#{key_file}': #{e.message}"
     end

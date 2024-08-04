@@ -4,11 +4,6 @@ require_relative 'constants'
 
 # Ruku class
 class Ruku
-  def self.installed?
-    system('which ruku > /dev/null 2>&1')
-    $CHILD_STATUS.success?
-  end
-
   def self.release_file_name
     arch = `uname -m`.strip
 
@@ -23,8 +18,10 @@ class Ruku
   end
 
   def self.move_binary_to_bin(binary_name)
+    home = Dir.home
     binary_path = File.join(Dir.pwd, binary_name)
-    bin_dir = File.expand_path('/bin')
+    ruku_root = File.join(home, '.ruku')
+    bin_dir = File.join(ruku_root, 'bin')
     bin_path = File.join(bin_dir, binary_name)
 
     if File.exist?(bin_path)
