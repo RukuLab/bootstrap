@@ -35,7 +35,8 @@ class Ruku
     puts "Moving ruku binary to #{bin_dir}..."
     FileUtils.mv(binary_path, bin_dir)
 
-    puts 'ruku binary installed successfully!'
+    ruku_version = `ruku --version`.chomp.sub(/^ruku /, '')
+    puts "Ruku version: #{ruku_version} installed successfully"
   end
 
   def self.install

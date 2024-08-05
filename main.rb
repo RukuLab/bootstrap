@@ -10,6 +10,7 @@ require_relative 'docker'
 def main
   if Docker.installed?
     puts 'Docker is already installed.'
+    system('docker version')
     if Docker.running?
       puts 'Docker is running.'
     else
@@ -22,7 +23,11 @@ def main
     puts 'Docker installation complete!'
   end
 
-  puts 'Ruku is already installed.' if Ruku.installed?
+  if Ruku.installed?
+    ruku_version = `ruku --version`.chomp.sub(/^ruku /, '')
+    puts "Ruku version: #{ruku_version} (Ruku is already installed.)"
+  end
+
   puts 'Installing the latest Ruku...'
   Ruku.install
   puts 'Ruku installation complete!'
