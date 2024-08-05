@@ -36,7 +36,7 @@ class Ruku
     FileUtils.mv(binary_path, bin_dir)
 
     ruku_version = `ruku --version`.chomp.sub(/^ruku /, '')
-    puts "Ruku version: #{ruku_version} installed successfully"
+    puts "Ruku version: #{ruku_version} installed successfully."
   end
 
   def self.install
