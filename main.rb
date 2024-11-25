@@ -25,7 +25,7 @@ def main
 
   if Ruku.installed?
     ruku_version = `ruku --version`.chomp.sub(/^ruku /, '')
-    puts "Ruku version: #{ruku_version} (Ruku is already installed.)"
+    puts "Ruku version: #{ruku_version} (Ruku is installed already)"
   end
 
   puts 'Installing the latest Ruku...'
